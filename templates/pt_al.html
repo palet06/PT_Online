@@ -1,0 +1,144 @@
+<!doctype html>
+{% extends 'govde.html' %}
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block baslik%}
+    Atlas GYM - PT -- [> PT AL <]
+  {% endblock baslik %}</title>
+</head>
+<body>
+
+{% block govde_hocalar %}
+
+{% endblock govde_hocalar %}
+
+
+
+
+
+{% block govde_slider %}
+
+<!------------------------------BAŞLIK-------------------------------------->
+
+<div class="row row-fluid">
+    <div class="col-md-9 mx-auto">
+<div  class="jumbotron p-4 p-md-0 text-white rounded bg-dark">
+    <img  class="img-fluid  d-block mx-auto" src="{% static 'files/pt2.jpg' %}" >
+        <div  class="col-md-7 px-3">
+          <h1 class="display-5 font-italic">Özel ders ile hedeflerinize daha kolay ulaşın</h1>
+          <p class="lead my-3">Profesyönel eğitmenlerimizden, amaçlarınıza uygun olanını seçin.</p>
+        </div>
+      </div>
+</div>
+</div>
+<!-------------------------------HOCALAR--------------------------------------------------->
+<h3 class="h2 font-weight-normal text-primary text-center mb-0">EĞİTMENLERİMİZ</h3>
+
+<hr color="#007BFF">
+<br>
+<form class="form" action="{% url 'kullanicilar:pt_al' %}" method="post" id="registrationForm" enctype = "multipart/form-data">{% csrf_token %}
+
+<div class="table-responsive">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr align="center">
+      <th scope="col">#</th>
+      <th scope="col">İsim</th>
+      <th scope="col">Okul</th>
+      <th scope="col">Bölüm</th>
+      <th scope="col">Uzmanlık Alanı</th>
+      <th scope="col">Öğrenci Sayısı</th>
+      <th scope="col">CV</th>
+    </tr>
+  </thead>
+  <tbody>
+
+        {% for e in egitmen %}
+
+            <tr align="center">
+              <th scope="row">{{ e.id }}</th>
+              <td>{{ e.isim.upper }} {{ e.soyisim.upper }}</td>
+              <td>{{ e.universite.upper }}</td>
+              <td>{{ e.bolum.upper }}</td>
+                <td>FİTNESS</td>
+                <td>9</td>
+                <td>ANTRENÖRLÜK</td>
+            </tr>
+
+        {% endfor %}
+
+  </tbody>
+</table>
+</div>
+</form>
+<hr color="#007BFF">
+
+<!-------------------------------SATIN ALMA-------------------------------------------------->
+
+<div class="container mb-5 mt-5">
+    <div class="pricing card-deck flex-column flex-md-row mb-3">
+        <div class="card card-pricing text-center px-3 mb-4">
+            <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Starter Paket</span>
+            <div class="bg-transparent card-header pt-4 border-0">
+                <h3 class="h2 font-weight-normal text-primary text-center mb-0" data-pricing-value="60"><span class="h6 text-muted ml-1">Antrenman başına / </span>60<span class="price"> TL</span></h3>
+            </div>
+            <div class="card-body pt-0">
+                <ul class="list-unstyled mb-4">
+                    <li>Size özel antrenman desteği</li>
+                    <li>Temel beslenme desteği</li>
+                </ul>
+
+            </div>
+            <button type="button" class="btn btn-outline-secondary mb-3">Satın al</button>
+        </div>
+        <div class="card card-pricing popular shadow text-center px-3 mb-4">
+            <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Professional Paket</span>
+            <div class="bg-transparent card-header pt-4 border-0">
+                <h3 class="h2 font-weight-normal text-primary text-center mb-0" data-pricing-value="85"><span class="h6 text-muted ml-1">Antrenman başına / </span>85<span class="price"> TL</span></h3>
+            </div>
+            <div class="card-body pt-0">
+                <ul class="list-unstyled mb-4">
+                    <li>Size özel antrenman desteği</li>
+                    <li>Temel beslenme desteği</li>
+                </ul>
+
+            </div>
+            <button type="button" class="btn btn-outline-secondary mb-3">Satın al</button>
+        </div>
+        <div class="card card-pricing text-center px-3 mb-4">
+            <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Full Paket</span>
+            <div class="bg-transparent card-header pt-4 border-0">
+                <h3 class="h2 font-weight-normal text-primary text-center mb-0" data-pricing-value="100"><span class="h6 text-muted ml-1">Antrenman başına / </span>100<span class="price"> TL</span></h3>
+            </div>
+            <div class="card-body pt-0">
+                <ul class="list-unstyled mb-4">
+                    <li>Size özel antrenman desteği</li>
+                    <li>Temel beslenme desteği</li>
+                </ul>
+
+            </div>
+            <button type="button" class="btn btn-outline-secondary mb-3">Satın al</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!----------------------------------------------------------------------------->
+
+
+
+
+
+
+
+{% endblock %}
+
+</body>
+</html>

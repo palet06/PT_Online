@@ -1,0 +1,72 @@
+<!doctype html>
+{% extends 'govde.html' %}
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+<body>
+{% block govde_slider %}
+<div class="row">
+    <div class="col-md-12">
+<center><img src="{% static 'img/collection.jpg' %}" class="img-fluid mx-auto" alt="Responsive image"></center>
+    </div>
+</div>
+{% endblock govde_slider %}
+
+
+{% block govde_hocalar %}
+<br>
+<br>
+<br>
+<center><h1>EĞİTMENLERİMİZ</h1></center>
+<hr color="#007BFF">
+<div class="row">
+    <div class="col-sm-4">
+      <div class="card" >
+  <img class="card-img-top" src="{% static 'files/ilkay_profil.jpg' %}" >
+  <div class="card-body">
+    <h5 class="card-title">İlkay KURU</h5>
+    <p class="card-text">Ankara Üniversitesi'nin Amerikan Futbol takımı olan Ankara Cats ile...</p>
+    <a href="/ilkay/cv" class="btn btn-primary">Devamını Oku</a>
+  </div>
+</div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card" >
+  <img class="card-img-top" src="{% static 'files/ilkay_profil.jpg' %}" >
+  <div class="card-body">
+    <h5 class="card-title">İlkay KURU - orta</h5>
+    <p class="card-text">Ankara Üniversitesi'nin Amerikan Futbol takımı olan Ankara Cats ile...</p>
+    <a href="/ilkay/cv" class="btn btn-primary">Devamını Oku</a>
+  </div>
+</div>
+    </div>
+
+    <div class="col-sm-4">
+<div class="card" >
+  <img class="card-img-top" src="{% static 'files/ilkay_profil.jpg' %}" >
+  <div class="card-body">
+    <h5 class="card-title">İlkay KURU</h5>
+    <p class="card-text">Ankara Üniversitesi'nin Amerikan Futbol takımı olan Ankara Cats ile...</p>
+    <a href="/ilkay/cv" class="btn btn-primary">Devamını Oku</a>
+  </div>
+</div>
+    </div>
+</div>
+<hr color="#007BFF">
+
+
+
+
+
+{% endblock govde_hocalar %}
+
+
+
+</body>
+</html>

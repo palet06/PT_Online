@@ -1,0 +1,172 @@
+<!doctype html>
+{% extends 'govde.html' %}
+{% load static %}
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+  <title>{% block baslik%}
+    Atlas GYM - PT -- [> EĞİTMEN PROFİLİ <]
+  {% endblock baslik %}</title>
+
+</head>
+
+<body>
+
+  {% block govde_slider %}
+  <div class="container bootstrap snippet">
+    <div  class="row">
+      <div class="col-sm-12">
+        {% if isim == "" %}
+        <h3>{{ request.session.member.upper }}</h3>
+        {% else %}
+        <h3>{{ isim.upper }}</h3>
+
+        {% endif %}
+      </div>
+    </div>
+    <br>
+
+    <hr color="#007BFF">
+<form class="form" action="{% url 'kullanicilar:profilegitmen' %}" method="post" id="registrationForm" enctype = "multipart/form-data">{% csrf_token %}
+    <div class ="form-row"> <!--/form row**********************************************-->
+      <div  style="margin-top:7px;" class="form-group col-md-3">
+        <div class="card" >
+          <label for="fileUpload">
+            <img class="card-img-top" name="resimYok" height="192" width="192" id="fileResim" src="{{ resim }}" class="avatar img-circle img-thumbnail" alt="avatar">
+            <input src="{{ resim }}" name="resimDosya" accept="image/png, image/jpeg, image/jpg" onchange="$('#fileResim')[0].src = window.URL.createObjectURL(this.files[0])" id="fileUpload" type="file" hidden="True" class="text-center center-block file-upload">
+            <h5 align="center">Fotoğraf Ekleyin</h5></label>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-left"><span class="pull-left"><strong>Paylaşımlar </strong></span><span style="float:right;" class="badge badge-dark"> 128</span></li>
+              <li class="list-group-item text-left"><span class="pull-left"><strong>Verdiği PT'ler </strong></span><span style="float:right;" class="badge badge-dark"> 2</span></li>
+              <li class="list-group-item text-left"><span class="pull-left"><strong>Aktif PT'ler </strong></span><span style="float:right;" class="badge badge-success">{% if pt_kontrol == 1 %}VAR</span>{% endif %}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-group col-md-9">
+          <div class="form-row">
+
+            <div class="form-group col-md-12">
+
+              <label class="col-form-label" for="first_name"><h5>İsim</h5></label>
+              <input type="text" value="{{isim.upper}}" class="form-control" name="isim" id="first_name" placeholder="İsminiz">
+
+            </div>
+
+
+
+
+            <div class="form-group col-md-6 mr-auto">
+
+              <label class="col-form-label" for="date"><h5>Doğum Tarihi</h5></label>
+              <input id="date" value="{{dogum_tarihi}}" type="date" name="dogum_tarihi"  class="form-control">
+
+            </div>
+
+            <div class="form-group col-md-6 mr-auto">
+
+             <label class="col-form-label" for="telefon"><h5>Cep Telefonu</h5></label>
+             <input class="form-control" value="{{telefon}}"type="tel" data-country="TR" value="(555)-555-5555" maxlength="10" name="telefon" id="telefon" placeholder="Telefon Numaranızı Girin">
+
+           </div>
+
+
+           <div class="form-group col-md-6 mr-auto">
+
+            <label class="col-form-label" for="email"><h5>Email</h5></label>
+            <input type="email" value="{{email}}" class="form-control" name="email" id="email" placeholder="siz@email.com">
+
+          </div>
+
+          <div class="form-group col-md-6 mr auto">
+            <label class="col-form-label" for="cinsiyet"><h5>Cinsiyet</h5></label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="cinsiyet" name="cinsiyet">
+             <option>SEÇİNİZ</option>
+             {% if cinsiyet == "E" %}
+             <option value="K">KIZ</option>
+             <option selected value="E">ERKEK</option>
+             {% elif cinsiyet == "K" %}
+             <option selected value="K">KIZ</option>
+             <option value="E">ERKEK</option>
+             {% else %}
+             <option value="K">KIZ</option>
+             <option value="E">ERKEK</option>
+             {% endif %}
+           </select>
+         </div>
+
+         <div class="form-group col-md-6 mr auto">
+            <label class="col-form-label" for="universite"><h5>Üniversite</h5></label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="universite" name="uni">
+                <option>SEÇİNİZ</option>
+                {% if uni %}
+                    {% for u in uni %}
+                        <option  value="{{u}}">{{ u }}</option>
+                    {% endfor %}
+                {% endif %}
+
+                {% if uni_secilen %}
+                    <option selected value="{{uni_secilen}}">{{ uni_secilen }}</option>
+                {% endif %}
+
+
+           </select>
+         </div>
+
+          <div class="form-group col-md-6 mr auto">
+            <label class="col-form-label" for="neresi"><h5>Bölüm</h5></label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="neresi" name="bolum">
+                <option>SEÇİNİZ</option>
+                {% if bolum %}
+                    {% for b in bolum %}
+                        <option value="{{b}}">{{ b }}</option>
+                    {% endfor %}
+                {% endif %}
+
+                {% if bolum_hangisi %}
+                    <option selected value="{{bolum_hangisi}}">{{ bolum_hangisi }}</option>
+                {% endif %}
+
+
+           </select>
+         </div>
+
+              <div class="form-group col-md-12">
+
+            <br>
+          <button  class="btn btn-lg btn-success btn-block" type="submit">KAYDET</button>
+              </div>
+          </div>
+
+    </div>
+
+  </div>
+
+
+</form>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+  {% endblock %}
+
+</body>
+</html>
+
+
+
+

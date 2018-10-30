@@ -1,0 +1,194 @@
+<!doctype html>
+{% extends 'govde.html' %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block baslik%}
+        Atlas GYM - PT -- [> KAYIT OL <]
+    {% endblock baslik %}</title>
+
+</head>
+<body>
+{% block govde_slider %}
+
+
+
+<div class="row"> <!-- burası tablı kayıt ol menü başlangıcı ----------------------------------- -->
+    <div class="col-md-12">
+        <div class="form-group row">
+    <div class="col-sm-5 mx-auto">
+
+      <h3>Kayıt Ol</h3>
+    <hr color="#007BFF">
+    </div>
+  </div>
+
+<div class="form-group row">
+    <div class="col-sm-5 mx-auto">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    {% if sayfa == "uye" %}
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Üye</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Eğitmen</a>
+      </li>
+    {% endif %}
+    {% if sayfa == "egitmen" %}
+        <li class="nav-item">
+        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Üye</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Eğitmen</a>
+      </li>
+    {% endif %}
+    {% if sayfa == None %}
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Üye</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Eğitmen</a>
+      </li>
+    {% endif %}
+
+</ul>
+    </div> </div>
+
+<div class="tab-content" id="myTabContent">
+    {% if sayfa == None %}
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    {% endif %}
+
+
+   {% if sayfa == "uye" %}
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+   {% endif %}
+   {% if sayfa == "egitmen" %}
+      <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+   {% endif %}
+      <form method="POST" action="{% url 'kullanicilar:kayit' %}">{% csrf_token %}
+
+  <div class="form-group row">
+    <div class="col-sm-5 mx-auto">
+
+      <input value="{{ kullanici_adi }}" name="kullanici_adi" type="text" class="form-control" id="inputkullanici" placeholder="Kullanıcı adı">
+    </div>
+  </div>
+
+  <div class="form-group row">
+
+    <div class="col-sm-5 mx-auto">
+      <input name="sifre" type="password" class="form-control" id="inputPassword" placeholder="Şifre">
+    </div>
+  </div>
+
+  <div class="form-group row">
+
+    <div class="col-sm-5 mx-auto">
+      <input name="confirm" type="password" class="form-control" id="inputPassword2" placeholder="Şifrenizi yeniden yazın">
+    </div>
+  </div>
+
+   <div class="form-group row">
+
+    <div class="col-sm-5 mx-auto">
+      <input value="{{ email }}" name="email" type="email" class="form-control" id="inputEmail" placeholder="Email">
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <div class="col-sm-5 mx-auto">
+      <button type="submit" class="btn btn-primary form-control">Kayıt Ol</button>
+        <hr color="#007BFF">
+    </div>
+  </div>
+          <input name="kim" type="text" hidden="True" value="uye">
+</form>
+
+
+
+  </div>
+
+
+
+{% if sayfa == "egitmen" %}
+  <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+{% else %}
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+{% endif %}
+      <form method="POST" action="{% url 'kullanicilar:kayit' %}">{% csrf_token %}
+
+  <div class="form-group row">
+    <div class="col-sm-5 mx-auto">
+      <input name="hoca_kullanici_adi" type="text" class="form-control" id="inputkullanici" placeholder="Kullanıcı adı">
+    </div>
+  </div>
+
+  <div class="form-group row">
+
+    <div class="col-sm-5 mx-auto">
+      <input name="hoca_sifre" type="password" class="form-control" id="inputPassword" placeholder="Şifre">
+    </div>
+  </div>
+
+  <div class="form-group row">
+
+    <div class="col-sm-5 mx-auto">
+      <input name="hoca_confirm" type="password" class="form-control" id="inputPassword2" placeholder="Şifrenizi yeniden yazın">
+    </div>
+  </div>
+
+   <div class="form-group row">
+
+    <div class="col-sm-5 mx-auto">
+      <input name="hoca_email" type="email" class="form-control" id="inputEmail" placeholder="Email">
+    </div>
+  </div>
+    <div class="form-group row">
+
+    <div class="col-sm-5 mx-auto">
+      <input  name="hoca_egitmen_kodu" type="number" class="form-control" id="inputPassword2" placeholder="Eğitmen kodunuzu yazın" data-toggle="tooltip" data-placement="right" title="Kayıt olmak için İlkay KURU'dan aldığınız 4 haneli kod">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-5 mx-auto">
+      <button type="submit" class="btn btn-primary form-control">Kayıt Ol</button>
+        <hr color="#007BFF">
+    </div>
+  </div>
+          <input name="kim" type="text" hidden="True" value="egitmen">
+</form>
+
+  </div>
+
+</div>
+
+
+
+<div class="form-group row">
+    <div class="col-sm-5 mx-auto">
+    {% if messages %}
+
+    {% for message in messages %}
+    {% if message.tags == "info" %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% else %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endif %}
+
+
+    {% endfor %}
+
+    {% endif %}
+    </div></div>
+</div>
+</div>
+
+{% endblock govde_slider %}
+</body>
+</html>

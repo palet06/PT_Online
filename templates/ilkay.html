@@ -1,0 +1,47 @@
+<!doctype html>
+{% extends 'govde.html' %}
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block baslik%}
+        Atlas GYM - PT -- [> İLKAY KURU <]
+    {% endblock baslik %}</title>
+
+</head>
+<body>
+{% block govde_slider %}
+<div class="row">
+<div class="col-md-4 mx-auto">
+<div class="card mx-auto" >
+  <img class="card-img-top" src="{% static 'files/ilkay_profil.jpg' %}">
+  <div class="card-body mx-auto">
+    <h3>İlkay KURU</h3>
+
+  </div>
+</div>
+</div></div>
+
+<hr color="#007BFF">
+ <div class="jumbotron">
+  <h1 class="display-4">Merhaba</h1>
+  <p class="lead">Ankara Üniversitesi Fizik Mühendisliği Bölümünü okuduğum sırada aynı zamanda Amerikan Futbol takımımız
+  Ankara Cats'e seçildim. Ve bu vesile ile Vücut Geliştirme ile ilgilenmeye başladım.</p>
+  <hr class="my-4">
+  <p>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Özgeçmişim
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <img src="{% static 'files/Profile.jpg' %}" width="500" height="800">
+  </div>
+</div>
+</div>
+{% endblock %}
+</body>
+</html>

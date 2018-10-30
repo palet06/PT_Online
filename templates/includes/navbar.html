@@ -1,0 +1,110 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+  <ul class="navbar-nav mX-auto text-center">
+    <a href="{{'/'}}"><img src="{% static 'img/ico.jpg' %}" height="36"></a>
+    </ul>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto text-center">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Blog<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ilkay/cv">İlkay Kuru ile Tanış<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ilkay/hizmetler">Hizmetler<span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#">İletişim<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      {% if request.session.tip == 'uye' %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              PT
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right bg-dark"  aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item bg-dark" style="color: white;" href="/kullanicilar/pt_al">PT Al</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item bg-dark" style="color: white;" href="#">Programlarım</a>
+              <a class="dropdown-item bg-dark" style="color: white;" href="#">Diyetlerim</a>
+              <a class="dropdown-item bg-dark" style="color: white;" href="#">Supplementlerim</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item bg-dark" style="color: white;" href="#">Soru Sor</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ request.session.member.upper }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right bg-dark"  aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item bg-dark" style="color: white;" href="/kullanicilar/profil">Profilim</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item bg-dark" style="color: white;" href="/kullanicilar/sifre">Şifre Değiştir</a>
+              <a class="dropdown-item bg-dark" style="color: white;" href="/kullanicilar/cikis">Çıkış</a>
+            </div>
+          </li>
+
+
+      {% endif %}
+
+      {% if request.session.tip == 'hoca' %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ request.session.member.upper }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right bg-dark"  aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item bg-dark" style="color: white;" href="/kullanicilar/profilegitmen">Profilim</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item bg-dark" style="color: white;" href="#">Öğrencilerim</a>
+              <a class="dropdown-item bg-dark" style="color: white;" href="#">Tarife Ayarları</a>
+              <a class="dropdown-item bg-dark" style="color: white;" href="#">Hazır Programlar</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item bg-dark" style="color: white;" href="/kullanicilar/sifre">Şifre Değiştir</a>
+              <a class="dropdown-item bg-dark" style="color: white;" href="/kullanicilar/cikis">Çıkış</a>
+            </div>
+          </li>
+
+           <li style="" class="nav-item dropdown">
+
+
+          </li>
+
+      {% endif %}
+
+            {% if not request.session.tip %}
+            <li class="nav-item">
+              <a class="nav-link" href="/kullanicilar/giris">Giriş<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/kullanicilar/kayit">Kayıt Olun<span class="sr-only">(current)</span></a>
+            </li>
+      {% endif %}
+
+
+      </ul>
+  </div>
+</nav>
+
+
+
+</body>
+</html>
+
+
